@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <%- include ('partials/includes.ejs') %>
+    <title>Login</title>
+</head>
+<body>
+    <h2 class="titleheader">Login</h2>
+    <form action="/loginreq" method="POST">
+        <label for="username">Nazwa użytkownika:</label>
+        <input type="text" id="username" name="username" required>
+        <br/>
+        <label for="password">Hasło:</label>
+        <input type="password" name="password" id="password">
+        <br/>
+        <button type="submit">Zaloguj</button>
+    </form>
+</body>
+</html>

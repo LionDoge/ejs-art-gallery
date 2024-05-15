@@ -1,0 +1,36 @@
+body {
+    background-color: #1a1a1a;
+    color: #ddd;
+}
+
+.titleheader {
+    color: #ddd
+}
+
+h1 {
+    color: #ddd;
+}
+
+#newpostbtn {
+    color: #6bbfff;
+}
+
+#welcome a {
+    color: #6bbfff;
+}
+
+#welcome h2 {
+    color: #ddd;
+}
+
+.artentry {
+    color: black;
+}
+
+.artinfo {
+    color: black;
+}
+
+#commentsect {
+    color: black;
+}

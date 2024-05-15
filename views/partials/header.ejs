@@ -1,0 +1,14 @@
+<div id="header">
+    <div id="welcome">
+        <% if (user) { %>
+            <h2>Witaj, <%= user.username %>!</h2>
+            <a href="/logout">Wyloguj</a>
+        <% } else { %>
+            <a href="/login">Zaloguj</a>
+            <a href="/register">Zarejestruj</a>
+        <% } %>
+    </div>
+    <div id="settings">
+        <button id="btn-darkmode" onclick="toggleTheme()">Tryb nocny</button>
+    </div>
+</div>

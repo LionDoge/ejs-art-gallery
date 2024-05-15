@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include ('partials/includes.ejs') %>
+    <title><%= art.title %> | Galeria sztuki</title>
+</head>
+<body>
+    <%- include('partials/header') %>
+    <h1><%= art.title %></h1>
+    <br/>
+    <img id="artimage" src="/data/<%= art.image %>"/>
+    <br/>
+    <div class="artinfo">
+        <span class="authortext">Autor: <b><%= art.username %></b></span>
+        <br/>
+        <span class="datetext"><%= new Date(art.date).toLocaleString() %></span>
+        <hr/>
+        <form id="editpostform" action="/editpost" method="POST">
+            <input type="hidden" name="id" value="<%= art.id %>">
+            <textarea name="description" id="postdescform" required></textarea>
+            <br/>
+            <button type="submit">Zapisz</button>
+        </form>
+        <p id="postdesc"><%= art.description %></p>
+        <div class="artrating">
+            <button class="ratebtn rateup" onclick="rate(<%= art.id %>, 1)">+</button>
+            <span id="ratingtext"><b><%= art.score %></b></span>
+            <button class="ratebtn ratedown" onclick="rate(<%= art.id %>, -1)">-</button>
+        </div>
+        <% if(user && user.id == art.authorid) { %>
+            <button id="editbtn" onclick="togglePostEdit()">Edytuj</button>
+        <% } %>
+    </div>
+    <div id="commentsect">
+        <h2 class="titleheader">Komentarze</h2>
+        <% if(user) { %>
+            <div class="commentform">
+                <form action="/addcommentreq" method="POST">
+                    <label for="content"><b>Wstaw komentarz:</b></label>
+                    <br/>
+                    <textarea id="content" name="content" required></textarea>
+                    <input type="hidden" name="artid" value="<%= art.id %>">
+                    <br/>
+                    <button type="submit">Dodaj</button>
+                </form>
+            </div>
+        <% } else { %>
+            <div class="commentform">
+                Zaloguj się aby dodać komentarz
+            </div>
+        <% } %>
+        <% comments.forEach(comment => { %>
+            <div class="comment">
+                <b>Komentarz użytkownika <%= comment.username %></b>
+                <br/>
+                <%= new Date(comment.date).toLocaleString() %>
+                <p><%= comment.content %></p>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>

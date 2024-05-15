@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include ('partials/includes.ejs') %>
+    <title>Galeria</title>
+</head>
+<body>
+    <%- include('partials/header') %>
+    <h1 class="titleheader">Galeria</h1>
+    <div id="controls">
+        <% if (user) { %>
+            <a id="newpostbtn" href="/addpost">Dodaj nowy wpis</a>
+        <% } %>
+    </div>
+    <div id="gallery">
+        <% arts.forEach(art => { %>
+            <div class="artentry" id="art<%= art.id %>">
+                <h2><a href="/art?id=<%= art.id %>"><%= art.title %></a></h2>
+                autorstwa: <%= art.username %>
+                <br/>
+                Data utworzenia: <%= new Date(art.date).toLocaleString() %>
+                <br/><br/>
+                <img src="/data/<%= art.image %>"/>
+                <div class="artrating">
+                    Ocena: <%= art.score %>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
